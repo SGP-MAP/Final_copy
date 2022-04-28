@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Step 1: Git clone') {
             steps {
-                git 'https://github.com/Manthan0112/MYSOC_copy.git'
+                git 'https://github.com/SGP-MAP/Final_copy.git'
             }
         }
         stage('build frontend') {

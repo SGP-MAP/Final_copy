@@ -1,0 +1,19 @@
+.images{
+    height: 225px;
+    margin-top: 20px;
+}
+
+a :hover{
+    text-decoration: none;
+    color: black;
+    transform: scale(1.1);
+}
+
+a{
+    display: flex;
+    padding: 5px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+}

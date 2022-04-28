@@ -1,0 +1,42 @@
+services:
+ react:
+  image: manthan0112/frontend
+  container_name: "react"
+  ports:
+   - 3000:3000
+  networks:
+   - abc
+  depends_on:
+    - spring
+    - mongo
+ spring:
+  image: manthan0112/backend
+  container_name: "spring"
+  ports:
+   - 8081:8081
+  networks:
+   - abc
+  depends_on: 
+   - mongo
+ 
+ mongo: 
+  image: mongo:latest
+  container_name: "mongo"
+  ports:
+   - 27017:27017
+  networks:
+   - abc
+  volumes_from:
+        - data
+
+ data:
+    image: mongo:latest
+    volumes:
+        - /var/lib/mongo
+        - ./setup:/setup
+    command: "true"
+    networks:
+      - abc
+    container_name: "temp"
+networks:
+    abc:

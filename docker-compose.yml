@@ -5,7 +5,7 @@ services:
   ports:
    - 3000:3000
   networks:
-   - abc
+   - manthan0112_abc1
   depends_on:
     - spring
     - mongo
@@ -15,7 +15,7 @@ services:
   ports:
    - 8081:8081
   networks:
-   - abc
+   - manthan0112_abc1
   depends_on: 
    - mongo
  
@@ -25,7 +25,7 @@ services:
   ports:
    - 27017:27017
   networks:
-   - abc
+   - manthan0112_abc1
   volumes_from:
         - data
 
@@ -36,7 +36,10 @@ services:
         - ./setup:/setup
     command: "true"
     networks:
-      - abc
+      - manthan0112_abc1
     container_name: "temp"
+    
 networks:
-    abc:
+   abc1:
+     driver: bridge
+    

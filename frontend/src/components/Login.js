@@ -23,9 +23,11 @@ function Login() {
     const [id,setId]=useState("");
     const [password,setPassword]=useState("");
 
+    const ip = sessionStorage.getItem("ip_add");
+
     async function validateLogin(){
         let  item ={id,password};
-        await fetch("http://172.16.131.116:8081/user/login",{
+        await fetch(`http://${ip}:8081/user/login`,{
             method:'POST',
             headers:{
                 "Content-Type":"application/json",

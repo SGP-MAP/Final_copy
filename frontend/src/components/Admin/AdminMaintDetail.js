@@ -12,7 +12,7 @@ export class AdminMaintDetail extends Component {
     constructor(props) {
         
         super(props)   
-        
+        const ip = sessionStorage.getItem("ip_add");
         this.state = {
         
             api: null,
@@ -44,14 +44,14 @@ export class AdminMaintDetail extends Component {
         
         if( e === 'Paid' ){
             this.setState({
-                api: `http://localhost:8081/Maitainence/getPaidUserWise/${this.state.id}`
+                api: `http://${this.ip}:8081/Maitainence/getPaidUserWise/${this.state.id}`
             }, () => {
                 this.fetchApi();
             })
         }else{
             
             this.setState({
-                api : `http://localhost:8081/Maitainence/getRemainingUserWise/${this.state.id}`
+                api : `http://${this.ip}:8081/Maitainence/getRemainingUserWise/${this.state.id}`
             }, () => {
                 this.fetchApi();
             })
@@ -64,7 +64,7 @@ export class AdminMaintDetail extends Component {
     handleChange = (e) => {
         
         this.setState({
-            api : `http://localhost:8081/Maitainence/geMonthlyUserWise/${this.state.id}/${e}`
+            api : `http://${this.ip}:8081/Maitainence/geMonthlyUserWise/${this.state.id}/${e}`
         }, () => {
             console.log(e + "hello");
             // this.fetchApi();
@@ -79,7 +79,7 @@ export class AdminMaintDetail extends Component {
             headers: { 'Content-Type': 'application/json' },
         };
         // index = index+1;
-        const response = await fetch(`http://localhost:8081/Maitainence/updateStatus/${this.state.id}/${index}/2021`, requestOptions);
+        const response = await fetch(`http://${this.ip}:8081/Maitainence/updateStatus/${this.state.id}/${index}/2021`, requestOptions);
         const data = await response.json();
         console.log(data);
         // calling api for full list
@@ -100,7 +100,7 @@ export class AdminMaintDetail extends Component {
 
     componentDidMount() {
        
-        this.setState({api : `http://localhost:8081/Maitainence/getById/${this.state.id}`},()=>{
+        this.setState({api : `http://${this.ip}:8081/Maitainence/getById/${this.state.id}`},()=>{
             console.log("hello" + this.state.api);
             this.fetchApi();
         })

@@ -6,8 +6,9 @@ import './UserMaint.css'
 
 export class UserMaint extends Component {
 
-
+    
     constructor(props) {
+        const ip = sessionStorage.getItem("ip_add");
         super(props)   
         this.state = {
             records: []
@@ -16,8 +17,9 @@ export class UserMaint extends Component {
     }
 
     componentDidMount() {
-        const status=JSON.parse(localStorage.getItem('user-info'));
-        fetch(`http://localhost:8081/Maitainence/getById/${status['id']}`)
+        // const status=JSON.parse(localStorage.getItem('user-info'));
+        const id = sessionStorage.getItem("user_id")
+        fetch(`http://${this.ip}:8081/Maitainence/getById/${id}`)
             .then(response => response.json())
             .then(records => {
                 this.setState({

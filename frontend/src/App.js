@@ -21,6 +21,7 @@ import AdminMaintDetail from './components/Admin/AdminMaintDetail';
 
 
 export default class Paths extends Component {
+
     constructor(props){
         super(props);
         this.state = {
@@ -32,6 +33,10 @@ export default class Paths extends Component {
     set_user_id = (id) => {
         console.log(id);
         this.setState({user_id: id})
+    }
+
+    componentDidMount() {
+        sessionStorage.setItem("ip_add", "172.16.131.116");
     }
 
     render(){

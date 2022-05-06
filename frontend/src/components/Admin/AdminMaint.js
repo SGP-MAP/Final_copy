@@ -10,9 +10,9 @@ export default class AdminMaint extends Component{
 
     constructor(props) {
         super(props)   
-        
+        const ip = sessionStorage.getItem("ip_add");
         this.state = {
-            api: 'http://localhost:8081/user/list',
+            api: `http://${ip}:8081/user/list`,
             records: [],
             months : [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ] ,
             targetMonth : 0,

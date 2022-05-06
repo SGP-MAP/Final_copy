@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Button, Input, Form, message } from "antd";
 
 export default class ViewApp extends Component {
+
+  
   componentDidMount = () => {
     this.props.editModalForm();
   };
@@ -12,11 +14,12 @@ export default class ViewApp extends Component {
 
   accept = (r, e) => {
     // console.log("hello " + r.flatno + " world " + r.contactno);
+    let ip = sessionStorage.getItem("ip_add");
     let id = r.flatno;
     let name = r.name;
     let contact_number = r.contactno;
     let password = this.props.modal_data.password;
-    let url = `http://localhost:8081/user/update/${id}`;
+    let url = `http://${ip}:8081/user/update/${id}`;
     let item = {
       name ,
       contact_number,
@@ -61,6 +64,7 @@ export default class ViewApp extends Component {
 
   
   render() {
+    
     return (
       <Form
         layout="vertical"

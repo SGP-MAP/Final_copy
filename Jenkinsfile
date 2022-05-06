@@ -52,12 +52,6 @@ pipeline {
             	sh ' docker build -t $registry2 .'                                
             }
         }
-        stage('Cleaning up') {
-            steps{
-                sh "docker rmi $registry1"
-		sh "docker rmi $registry2"
-            }
-        }
         
         
         stage('Deploy our image') {
@@ -66,6 +60,14 @@ pipeline {
 		    withDockerRegistry([ credentialsId: registryCredential, url: "" ]) {sh 'docker push $registry2'}
             }
         }
+	    
+	stage('Cleaning up') {
+            steps{
+                sh "docker rmi $registry1"
+		sh "docker rmi $registry2"
+            }
+        }
+        
         
         stage('Ansible Deploy') {
             steps {

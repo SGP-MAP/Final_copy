@@ -1,12 +1,12 @@
+FROM node:18-alpine AS build
+
 WORKDIR /app
 
 COPY package.json /app/package.json
 
 RUN apk add yarn
+
 RUN yarn  install --production
-
-
-
 
 FROM node:18-alpine AS build_stage
 

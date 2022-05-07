@@ -2,20 +2,30 @@ FROM node:18-alpine AS build
 
 WORKDIR /app
 
-COPY package.json ./
+COPY package.json /app/package.json
 
-RUN yarn  install
+RUN apk add yarn
+RUN yarn  install --production
 
-COPY . /app
+
+
+
+FROM node:18-alpine AS build_stage
+
+COPY --from=build /app/node_modules/ /app/node_modules
+
+WORKDIR /app
+
+COPY . .
 
 RUN yarn build
 
-FROM node:18-alpine
 
-WORKDIR /src
+FROM node:18-alpine AS server
 
-RUN npm install -g server
+COPY --from=build_stage /app/build /app/build
 
-COPY --from=build /app/build ./build
+RUN npm install -g serve
 
-CMD server -d ./build
+
+CMD server -s /app/build -l 3000

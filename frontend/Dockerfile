@@ -1,12 +1,21 @@
-FROM node
+FROM node:18-alpine AS build
 
-RUN mkdir -p /src/app
+WORKDIR /app
 
-WORKDIR /src/app
+COPY package.json ./
 
-COPY . /src/app
+RUN yarn  install
 
-RUN npm install
+COPY . /app
 
+RUN yarn build
 
-CMD ["npm", "start"]
+FROM node:18-alpine
+
+WORKDIR /src
+
+RUN npm install -g server
+
+COPY --from=build /app/build ./build
+
+CMD server -d ./build

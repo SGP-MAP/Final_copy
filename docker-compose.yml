@@ -26,8 +26,8 @@ services:
    - 27017:27017
   networks:
    - abc1
-  volumes_from:
-        - data
+  volumes:
+        -shared-db:/data/db 
 
  data:
     image: mongo:latest
@@ -42,4 +42,7 @@ services:
 networks:
    abc1:
      driver: bridge
+     
+volumes:
+   shared-db;
     

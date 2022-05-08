@@ -33,6 +33,8 @@
         owner: ubuntu
         group: ubuntu
         mode: 0777
+    - name: Changing permission
+      shell: sudo chmod 777 /var/run/docker.sock
         
     - name: Run Docker compose
       shell: ./scriptfile.sh

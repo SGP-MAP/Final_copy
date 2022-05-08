@@ -26,23 +26,14 @@ services:
    - 27017:27017
   networks:
    - abc1
-  volumes:
-        -shared-db:/data/db 
-
- data:
-    image: mongo:latest
-    volumes:
-        - /var/lib/mongo
-        - ./setup:/setup
-    command: "true"
-    networks:
-      - abc1
-    container_name: "temp"
+  volumes: 
+   - shared-db:/data/db 
+   - ./setup:/setup
     
 networks:
    abc1:
      driver: bridge
      
 volumes:
-   shared-db;
+   shared-db:
     
